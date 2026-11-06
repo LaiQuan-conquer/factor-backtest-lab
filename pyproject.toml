@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "factor-backtest-lab"
+version = "0.1.0"
+description = "Personal research lab for classic factor construction and backtesting (educational purpose only)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "LaiQuan", email = "laiquan@example.com"}
+]
+keywords = ["quantitative-finance", "factor-investing", "backtesting", "research", "educational"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+fetch = [
+    "akshare>=1.10.0",
+    "yfinance>=0.2.0",
+]
+analysis = [
+    "matplotlib>=3.7.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+factor-lab = "factor_backtest_lab.__main__:main"
+
+[project.urls]
+"Homepage" = "https://github.com/LaiQuan-conquer/factor-backtest-lab"
+"Bug Tracker" = "https://github.com/LaiQuan-conquer/factor-backtest-lab/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["data*", "factors*", "backtest*", "analysis*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
